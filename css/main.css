@@ -9,3 +9,19 @@ body {
 .navbar-brand {
   color: #FFF !important;
 }
+
+.row-book {
+  border-bottom: 1px solid #ddd;
+}
+
+.row-book:hover {
+  background: #e1e1e1;
+}
+
+.animate-bg {
+  -webkit-transition: background 300ms ease-in-out;
+  -moz-transition: background 300ms ease-in-out;
+  -ms-transition: background 300ms ease-in-out;
+  -o-transition: background 300ms ease-in-out;
+  transition: background 300ms ease-in-out;
+}

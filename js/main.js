@@ -44,7 +44,9 @@ function drawBook (book) {
   let row = document.createElement('div')
   row.classList.add('row')
   row.classList.add('row-book')
-  row.classList.add('mb-2')
+  row.classList.add('animate-bg')
+  row.classList.add('pb-2')
+  row.classList.add('pt-2')
   row.dataset.id = book._id
 
   let colTitle = document.createElement('div')
@@ -105,7 +107,6 @@ function deleteBook (bookId) {
 function loadCollection () {
   return new Promise(resolve => {
     db.collection(collectionBooks).load(() => {
-      console.log('loaded')
       resolve()
     })
   })
