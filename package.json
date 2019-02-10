@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/entom/Home-Library-ForerunnerDB-Demo#readme",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.7.1",
     "bootstrap": "^4.2.1",
     "forerunnerdb": "^2.0.22",
     "jquery": "^3.3.1",

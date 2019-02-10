@@ -77,8 +77,12 @@ function drawBook (book) {
   deleteButton.classList.add('btn-danger')
   deleteButton.classList.add('btn-sm')
   deleteButton.dataset.id = book._id
-  deleteButton.value = 'DELETE'
-  deleteButton.innerText = 'DELETE'
+
+  let deleteIcon = document.createElement('i')
+  deleteIcon.classList.add('fas')
+  deleteIcon.classList.add('fa-trash')
+  deleteButton.appendChild(deleteIcon)
+
   deleteButton.addEventListener('click', () => {
     deleteBook(book._id)
   })
