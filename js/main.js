@@ -27,6 +27,10 @@ document.getElementById('AddBookSubmitButton').addEventListener('click', () => {
   })
 })
 
+document.getElementById('editConfirmation').addEventListener('click', () => {
+  document.getElementById('closeModal').click()
+})
+
 loadBooks()
 
 function loadBooks () {
@@ -78,6 +82,8 @@ function drawBook (book) {
   editButton.classList.add('btn-sm')
   editButton.classList.add('mr-1')
   editButton.dataset.id = book._id
+  editButton.dataset.toggle = 'modal'
+  editButton.dataset.target = '#modalEdit'
 
   let editIcon = document.createElement('i')
   editIcon.classList.add('fas')
