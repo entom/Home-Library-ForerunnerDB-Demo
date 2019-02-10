@@ -27,7 +27,8 @@ document.getElementById('AddBookSubmitButton').addEventListener('click', () => {
     }
     collection.insert(bookObject)
     collection.save(() => {
-      drawBook(bookObject)
+      let row = drawBook(bookObject)
+      booksContainer.appendChild(row)
     })
   })
 })
@@ -45,7 +46,14 @@ document.getElementById('editConfirmation').addEventListener('click', () => {
     }
     collection.update({_id: _id}, book)
     collection.save(() => {
-
+      let rows = document.getElementsByClassName('row-book')
+      for (let row of rows) {
+        if (row.dataset.id === _id) {
+          book._id = _id
+          let newRow = drawBook(book)
+          row.replaceWith(newRow)
+        }
+      }
     })
   })
 })
@@ -57,13 +65,13 @@ function loadBooks () {
     let books = db.collection(collectionBooks).find({})
 
     for (let book of books) {
-      drawBook(book)
+      let row = drawBook(book)
+      booksContainer.appendChild(row)
     }
   })
 }
 
 function drawBook (book) {
-  console.log(book)
   let row = document.createElement('div')
   row.classList.add('row')
   row.classList.add('row-book')
@@ -136,7 +144,7 @@ function drawBook (book) {
 
   row.appendChild(colActions)
 
-  booksContainer.appendChild(row)
+  return row
 }
 
 function deleteBook (bookId) {
