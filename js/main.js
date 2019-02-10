@@ -5,6 +5,11 @@ let db = fdb.db("home_library")
 db.persist.driver("LocalStorage")
 
 let booksContainer = document.getElementById('BooksContainer')
+let editBookId = document.getElementById('editBookId')
+let editBookTitle = document.getElementById('editBookTitle')
+let editBookAuthor = document.getElementById('editBookAuthor')
+let editBookYear = document.getElementById('editBookYear')
+let editBookPages = document.getElementById('editBookPages')
 
 document.getElementById('AddBookSubmitButton').addEventListener('click', () => {
   let bookTitle = document.getElementById('bookTitle').value
@@ -29,6 +34,20 @@ document.getElementById('AddBookSubmitButton').addEventListener('click', () => {
 
 document.getElementById('editConfirmation').addEventListener('click', () => {
   document.getElementById('closeModal').click()
+  loadCollection().then(() => {
+    let collection = db.collection(collectionBooks)
+    let _id = editBookId.value
+    let book = {
+      title: editBookTitle.value,
+      author: editBookAuthor.value,
+      year: editBookYear.value,
+      pages: editBookPages.value
+    }
+    collection.update({_id: _id}, book)
+    collection.save(() => {
+
+    })
+  })
 })
 
 loadBooks()
@@ -90,6 +109,13 @@ function drawBook (book) {
   editIcon.classList.add('fa-edit')
   editButton.appendChild(editIcon)
 
+  editButton.addEventListener('click', () => {
+    editBookId.value = book._id
+    editBookTitle.value = book.title
+    editBookAuthor.value = book.author
+    editBookYear.value = book.year
+    editBookPages.value = book.pages
+  })
   colActions.appendChild(editButton)
 
   let deleteButton = document.createElement('button')
