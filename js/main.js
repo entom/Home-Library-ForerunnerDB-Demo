@@ -43,7 +43,9 @@ function drawBook (book) {
   console.log(book)
   let row = document.createElement('div')
   row.classList.add('row')
+  row.classList.add('row-book')
   row.classList.add('mb-2')
+  row.dataset.id = book._id
 
   let colTitle = document.createElement('div')
   colTitle.classList.add('col-sm-3')
@@ -72,13 +74,32 @@ function drawBook (book) {
   deleteButton.classList.add('btn')
   deleteButton.classList.add('btn-danger')
   deleteButton.classList.add('btn-sm')
+  deleteButton.dataset.id = book._id
   deleteButton.value = 'DELETE'
   deleteButton.innerText = 'DELETE'
+  deleteButton.addEventListener('click', () => {
+    deleteBook(book._id)
+  })
   colActions.appendChild(deleteButton)
 
   row.appendChild(colActions)
 
   booksContainer.appendChild(row)
+}
+
+function deleteBook (bookId) {
+  loadCollection().then(() => {
+    collection = db.collection(collectionBooks)
+    collection.remove({_id: bookId})
+    collection.save()
+
+    let rows = document.getElementsByClassName('row-book')
+    for (let row of rows) {
+      if (row.dataset.id === bookId) {
+        row.remove()
+      }
+    }
+  })
 }
 
 function loadCollection () {
