@@ -72,6 +72,20 @@ function drawBook (book) {
   let colActions = document.createElement('div')
   colActions.classList.add('col-sm-2')
 
+  let editButton = document.createElement('button')
+  editButton.classList.add('btn')
+  editButton.classList.add('btn-primary')
+  editButton.classList.add('btn-sm')
+  editButton.classList.add('mr-1')
+  editButton.dataset.id = book._id
+
+  let editIcon = document.createElement('i')
+  editIcon.classList.add('fas')
+  editIcon.classList.add('fa-edit')
+  editButton.appendChild(editIcon)
+
+  colActions.appendChild(editButton)
+
   let deleteButton = document.createElement('button')
   deleteButton.classList.add('btn')
   deleteButton.classList.add('btn-danger')
