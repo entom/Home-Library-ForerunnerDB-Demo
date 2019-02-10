@@ -22,7 +22,7 @@ document.getElementById('AddBookSubmitButton').addEventListener('click', () => {
     }
     collection.insert(bookObject)
     collection.save(() => {
-      console.log(bookObject)
+      drawBook(bookObject)
     })
   })
 })
